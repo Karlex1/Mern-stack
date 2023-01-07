@@ -1,6 +1,6 @@
 # mern-stack
 
-This is repository for mern-stack lreaning process notes.
+This is repository for mern-stack learning process notes.
 
 In this till 3 commit I learned about the React (Basic templete, useState hook).
 We learning it by creating a form which have input field for amount,desc,date all input is getting handeled by useState hook.
