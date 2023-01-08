@@ -20,9 +20,12 @@ function App() {
 async function handleSubmit  (event)  {
     event.preventDefault();
   const res = await fetch(
-    "http://localhost:4000/transaction",{
+    "http://localhost:4000/",{
       method:'POST',
-      body:form,
+      body:JSON.stringify(form),
+      headers:{
+        'content-type':'application/json',
+      },
     }
    );
 console.log(res);
