@@ -1,19 +1,21 @@
 import express from "express";
-import mongoose from "mongoose";
+
+import { DbConn } from "./databaseConnection.js";
 import cors from 'cors';
 import bodyParser from "body-parser";
-import Transaction from "./TransactionModel.js";
+import TransactionRoutes from "./transactionRoute.js";
 
 const app = express();
 const Port = 4000;
-
-// mongoose for db connection M.
-// connection is promise .
-await mongoose.connect("mongodb+srv://sanchit:pass231020@mern-stack.tzfiyj1.mongodb.net/?retryWrites=true&w=majority").then(() => { console.log("Database connected!"); }).catch((err) => { console.error(err); })
-
-
 app.use(cors());
-app.use(bodyParser.json())
+app.use(bodyParser.json());
+
+
+
+
+await DbConn();
+
+
 
 
 app.get(
@@ -21,25 +23,7 @@ app.get(
         res.send({reso:'hello!'});
     }
 );
-app.get(
-    '/transaction', async (req, res) => {
-        const transaction = await Transaction.find({});
-        res.json({ data: transaction });
-    }
-)
-app.post(
-    "/transaction", async (req, res) => {
-        const { amount, description, date } = req.body;
-        // we got form data from frontend to backend by req of Post of backend now we getting the data so we have to store it.
-        const transaction = new Transaction({
-            amount,
-            description,
-            date,
-        })
-        await transaction.save()
-        res.json({ output: transaction });
-    }
-);
+app.use('/',TransactionRoutes);
 app.listen(
     Port, () => {
         console.log("Server listen at : http://localhost:4000/ ");
