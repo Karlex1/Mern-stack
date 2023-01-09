@@ -43,24 +43,39 @@ console.log(res);
           value={form.amount}
           placeholder='Enter transaction amount'
         />
-<br/>
+<br/><br/>
         <input
           name='desc'
           onChange={handleInput}
           value={form.desc}
           placeholder='description'
           type='text' />
-<br/>
+<br/><br/>
         <input
           name='date'
           placeholder='date'
           type='date'
           onChange={handleInput}
           value={form.date} />
-<br/>
+<br/><br/>
         <button type='submit' >Submit</button>
         <br/>
       </form>
+      <br/><br/>
+    <table>
+      <thead>
+        <th>Amount</th>
+        <th>Description</th>
+        <th>Date</th>
+      </thead>
+      <tbody>
+        <tr>
+          <td>0</td>
+          <td>no issue</td>
+          <td>09-1-2023</td>
+        </tr>
+      </tbody>
+    </table>
     </div>
   );
 }
