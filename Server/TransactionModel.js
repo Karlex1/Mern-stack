@@ -4,7 +4,7 @@ import { Schema } from "mongoose";
 const transactionSchema = new Schema({
     amount:Number,
     description: String,
-    date:{type:Date,default:Date.now},
+    date:{type:Date,default:new Date()},
     createdAt:{type:Date,default:Date.now},
 });
 

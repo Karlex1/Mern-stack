@@ -1,41 +1,58 @@
-import { useState } from 'react'
-
-
+import { useEffect, useState } from 'react'
 
 function App() {
+
   // state for form data.
   const [form, setForm] = useState(
     {
       amount: '',
-      desc: '',
+      description: '',
       date: '',
     }
+  );
+
+  const [transactions, setTranactions] = useState(
+   []
   );
   //handleInput to collect data from input tag
   const handleInput = (event) => {
     setForm({ ...form, [event.target.name]: event.target.value })
-
   }
+
+useEffect(()=>{
+fetchTransaction();
+},[])
+
+const fetchTransaction= async ()=>{
+const res=await fetch('http://localhost:4000/transaction'
+);
+const {data} =await res.json();
+setTranactions(data);
+
+
+}
+
   //HandleSubmit to submit form.
-async function handleSubmit  (event)  {
+  async function handleSubmit(event) {
     event.preventDefault();
-  const res = await fetch(
-    "http://localhost:4000/",{
-      method:'POST',
-      body:JSON.stringify(form),
-      headers:{
-        'content-type':'application/json',
+    const res = await fetch(
+      "http://localhost:4000/transaction", {
+      method: 'POST',
+      body: JSON.stringify(form),
+      headers: {
+        'content-type': 'application/json',
       },
     }
-   );
-console.log(res);
+    
+    );
+  
   }
 
   return (
     <div className="App" >
 
       <form onSubmit={handleSubmit}>
-
+<br/>
         <input
           type='number'
           name='amount'
@@ -43,39 +60,40 @@ console.log(res);
           value={form.amount}
           placeholder='Enter transaction amount'
         />
-<br/><br/>
+        <br /><br />
         <input
-          name='desc'
+          name='description'
           onChange={handleInput}
-          value={form.desc}
+          value={form.description}
           placeholder='description'
           type='text' />
-<br/><br/>
+        <br /><br />
         <input
           name='date'
           placeholder='date'
           type='date'
           onChange={handleInput}
           value={form.date} />
-<br/><br/>
+        <br /><br />
         <button type='submit' >Submit</button>
-        <br/>
+        <br />
       </form>
-      <br/><br/>
-    <table>
-      <thead>
-        <th>Amount</th>
-        <th>Description</th>
-        <th>Date</th>
-      </thead>
-      <tbody>
-        <tr>
-          <td>0</td>
-          <td>no issue</td>
-          <td>09-1-2023</td>
-        </tr>
-      </tbody>
-    </table>
+      <br /><br />
+      <table>
+        <thead>
+          <th>Amount</th>
+          <th>Description</th>
+          <th>Date</th>
+        </thead>
+        <tbody>
+       {transactions.map((e)=>(  
+       <tr key={e._id}>
+            <td>{e.amount}</td>
+            <td>{e.description}</td>
+            <td>{e.date}</td>
+          </tr>))}
+        </tbody>
+      </table>
     </div>
   );
 }
