@@ -1,9 +1,9 @@
 import express from "express";
 
-import { DbConn } from "./databaseConnection.js";
+import { DbConn } from "./component/databaseConnection.js";
 import cors from 'cors';
 import bodyParser from "body-parser";
-import TransactionRoutes from "./transactionRoute.js";
+import TransactionRoutes from "./component/transactionRoute.js";
 
 const app = express();
 const Port = 4000;
