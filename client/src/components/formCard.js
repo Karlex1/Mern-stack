@@ -4,6 +4,7 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import TextField from '@mui/material/TextField';
 import { Button } from '@mui/material';
+import { Typography } from '@mui/material';
 import './Card.css';
 
 function Foard({ se }) {
@@ -52,56 +53,55 @@ function Foard({ se }) {
 
 
   return (
-    <Box sx={{  marginTop: '10vw' }} >
-      <Card variant="outlined" >
-        <CardContent 
-        style={{backgroundColor: 'rgb(222,186,206)' }}>
-        <form onSubmit={handleSubmit} className='mlc'>
-          <TextField
-          className='hw2'
-            name='amount'
-            onChange={handleInput}
-            value={form.amount}
-            label="Amount"
-            id="filled-size-small"
-            placeholder='Enter Transaction Amount'
-            variant="filled"
-            size="small"
-            sx={{ marginRight: '2vw' }}
-            style={{marginTop:'0.5em'}}
-          />
-          <TextField
-            name='description'
-            label="Description"
-            id="filled-size-small"
-            variant="filled"
-            size="small"
-            className='hw2'
-            value={form.description}
-            onChange={handleInput}
-            sx={{ marginRight: '2vw' }}
-            style={{marginTop:'0.5em'}}
-          />
-          <TextField
-          className='hw2'
-            name='date'
-            id="datetime-local"
-            type="datetime-local"
-            size='small'
-            variant='filled'
-            value={form.date}
-            onChange={handleInput}
-            sx={{ marginRight: '2vw' }}
-            style={{marginTop:'0.5em'}}
-          />
-          <Button type='submit'
-          className='medi'
-          variant="contained"
-          size='medium'
-          sx={{marginTop:'1em'}}
-          >Submit</Button>
-        </form>
-      </CardContent>
+    <Box  className='mlrb-9'>
+      <Card variant="outlined"  >
+        <CardContent
+         >
+          <Typography variant="h6" fontFamily='cursive'
+            
+         >
+            Add New Transaction </Typography>
+          <form onSubmit={handleSubmit} >
+            <TextField
+              
+              name='amount'
+              onChange={handleInput}
+              value={form.amount}
+              label="Amount"
+              id="filled-size-small"
+              placeholder='Enter Transaction Amount'
+              variant="filled"
+              size="small"
+            />
+            <TextField
+              name='description'
+              label="Description"
+              id="filled-size-small"
+              variant="filled"
+              placeholder='Enter Description'
+              size="small"
+              
+              value={form.description}
+              onChange={handleInput}
+            />
+            <TextField
+              className='hw2'
+              name='date'
+              id="datetime-local"
+              type="datetime-local"
+              size='small'
+              variant='filled'
+              value={form.date}
+              onChange={handleInput}
+              
+            />
+            <Button type='submit'
+              variant="contained"
+              size='medium'
+              
+            >Submit</Button>
+          </form>
+        </CardContent>
       </Card>
     </Box>
   );

@@ -16,17 +16,17 @@ export default function TTable({transaction}) {
       <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
         <TableHead>
           <TableRow>
-            <TableCell>Amount</TableCell>
+            <TableCell align='center'>Amount</TableCell>
             <TableCell align="right">Description</TableCell>
-            <TableCell align="right">Date</TableCell>
+            <TableCell align="center">Date</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
         {transactions.map((e) => (
-            <TableRow key={e._id} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
-              <TableCell  component="th" scope="row">{e.amount}</TableCell>
+            <TableRow key={e._id} sx={{ '&:last-child td, &:last-child th': { border: 0 } }} >
+              <TableCell  component="th" scope="row" align='center'>{e.amount}</TableCell>
               <TableCell align='right'>{e.description}</TableCell>
-              <TableCell align='right'>{e.date}</TableCell>
+              <TableCell align='center'>{e.date}</TableCell>
             </TableRow>))}
         
         </TableBody>
