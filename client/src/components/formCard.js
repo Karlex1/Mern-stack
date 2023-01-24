@@ -6,6 +6,10 @@ import TextField from '@mui/material/TextField';
 import { Button } from '@mui/material';
 import { Typography } from '@mui/material';
 import './Card.css';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { DesktopDatePicker} from '@mui/x-date-pickers';
+
 
 function Foard({ se }) {
   const setTranactions = se;
@@ -18,7 +22,9 @@ function Foard({ se }) {
   const [form, setForm] = useState(
     initialForm
   );
-
+  function handleDate(newValue) {
+    setForm({ ...form, date: newValue });
+  }
   const handleInput = (event) => {
     setForm({ ...form, [event.target.name]: event.target.value })
   }
@@ -80,21 +86,21 @@ function Foard({ se }) {
               variant="filled"
               placeholder='Enter Description'
               size="small"
-              
               value={form.description}
               onChange={handleInput}
             />
-            <TextField
-              className='hw2'
-              name='date'
-              id="datetime-local"
-              type="datetime-local"
-              size='small'
-              variant='filled'
+            <LocalizationProvider dateAdapter={AdapterDayjs}>
+            <DesktopDatePicker
+              label="Transaction Date"
+              inputFormat="DD/MM/YYYY"
               value={form.date}
-              onChange={handleInput}
+              onChange={handleDate}
               
+              renderInput={(params) => (
+                <TextField sx={{ marginRight: 5 }} size="small"  {...params} />
+              )}
             />
+          </LocalizationProvider>
             <Button type='submit'
               variant="contained"
               size='medium'
