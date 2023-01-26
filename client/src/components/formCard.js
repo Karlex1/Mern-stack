@@ -8,20 +8,28 @@ import { Typography } from '@mui/material';
 import './Card.css';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { DesktopDatePicker} from '@mui/x-date-pickers';
+import { DesktopDatePicker } from '@mui/x-date-pickers';
 
 
-function Foard({ se }) {
-  const setTranactions = se;
+
+function Foard({ fetchTransaction, editTransaction,setEditTransaction }) {
+
   const initialForm = {
     amount: '',
     description: '',
-    date: '',
+    date: new Date(),
   }
   // state for form data.
   const [form, setForm] = useState(
     initialForm
   );
+
+  useEffect(() => {
+    if (editTransaction.amount !== undefined) {
+      setForm(editTransaction)
+    }
+  }, [editTransaction])
+
   function handleDate(newValue) {
     setForm({ ...form, date: newValue });
   }
@@ -33,17 +41,23 @@ function Foard({ se }) {
     fetchTransaction();
   })
 
-  const fetchTransaction = async () => {
-    const res = await fetch('http://localhost:4000/transaction'
-    );
-    const { data } = await res.json();
-    setTranactions(data);
-  }
+
   //HandleSubmit to submit form.
   async function handleSubmit(event) {
     event.preventDefault();
+
+    const res = editTransaction.amount === undefined ? create() : update();
+
+
+    if (res.ok) {
+      setForm(initialForm)
+      fetchTransaction();
+    }
+  }
+
+  async function create() {
     const res = await fetch(
-      "http://localhost:4000/transaction", {
+      "http://localhost:4000/transaction/", {
       method: 'POST',
       body: JSON.stringify(form),
       headers: {
@@ -51,61 +65,82 @@ function Foard({ se }) {
       },
     }
     )
-    if (res.ok) {
-      setForm(initialForm)
-      fetchTransaction();
+    setForm(initialForm);
+    return res;
+  }
+  async function update() {
+    const res = await fetch(                                  
+      `http://localhost:4000/transaction/${editTransaction._id}`, {
+      method: 'PATCH',
+      body: JSON.stringify(form),
+      headers: {
+        'content-type': 'application/json',
+      },
     }
+    )
+    setForm(initialForm);
+setEditTransaction({})
+    return res;
   }
 
 
+  const color = '#8AB4F1'
   return (
-    <Box  className='mlrb-9'>
+    <Box className='mlrb-9' >
       <Card variant="outlined"  >
         <CardContent
-         >
+        >
           <Typography variant="h6" fontFamily='cursive'
-            
-         >
+            sx={{ marginBottom: 2, marginLeft: 2 }}
+          >
             Add New Transaction </Typography>
           <form onSubmit={handleSubmit} >
             <TextField
-              
               name='amount'
               onChange={handleInput}
               value={form.amount}
               label="Amount"
               id="filled-size-small"
               placeholder='Enter Transaction Amount'
-              variant="filled"
+              variant="outlined"
               size="small"
+              sx={{ marginLeft: 5, marginRight: 5 }}
             />
             <TextField
               name='description'
               label="Description"
               id="filled-size-small"
-              variant="filled"
+              variant="outlined"
               placeholder='Enter Description'
               size="small"
+              sx={{ marginRight: 5 }}
               value={form.description}
               onChange={handleInput}
             />
             <LocalizationProvider dateAdapter={AdapterDayjs}>
-            <DesktopDatePicker
-              label="Transaction Date"
-              inputFormat="DD/MM/YYYY"
-              value={form.date}
-              onChange={handleDate}
-              
-              renderInput={(params) => (
-                <TextField sx={{ marginRight: 5 }} size="small"  {...params} />
-              )}
-            />
-          </LocalizationProvider>
-            <Button type='submit'
+              <DesktopDatePicker
+                label="Transaction Date"
+                inputFormat="DD/MM/YYYY"
+                value={form.date}
+                onChange={handleDate}
+                renderInput={(params) => (
+                  <TextField sx={{
+                    marginRight: 5, svg: { color }
+                  }} size="small" variant="outlined" {...params} />
+                )}
+              />
+            </LocalizationProvider>
+            {editTransaction.amount !== undefined ? <Button type='submit'
               variant="contained"
               size='medium'
-              
-            >Submit</Button>
+            >Update</Button> : <Button type='submit'
+              variant="contained"
+              size='medium'
+            >Submit</Button>}
+            {/* <Button type='submit'
+              variant="contained"
+              size='medium'
+            >Submit</Button> */}
           </form>
         </CardContent>
       </Card>

@@ -10,9 +10,6 @@ const Port = 4000;
 app.use(cors());
 app.use(bodyParser.json());
 
-
-
-
 await DbConn();
 
 
