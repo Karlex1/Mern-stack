@@ -1,10 +1,12 @@
 import {Router} from "express";
 import Transaction  from "./TransactionModel.js";
+import passport from 'passport';
 
 const router=Router();
 
+
 router.get(
-    '/transaction', async (req, res) => {
+    '/transaction',passport.authenticate('jwt',{session:false}), async (req, res) => {
         const transaction = await Transaction.find({}).sort({createdAt :-1});
         res.json({ data: transaction });
     }

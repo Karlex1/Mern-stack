@@ -28,8 +28,8 @@ export default function TTable({ transaction, fetchTransaction,setEditTransactio
     }
   }
   return (
-    <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
+    <TableContainer component={Paper} sx={{borderRadius:'20px'}}>
+      <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table" >
         <TableHead>
           <TableRow>
             <TableCell align='center'>Amount</TableCell>

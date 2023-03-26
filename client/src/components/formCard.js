@@ -5,14 +5,13 @@ import CardContent from '@mui/material/CardContent';
 import TextField from '@mui/material/TextField';
 import { Button } from '@mui/material';
 import { Typography } from '@mui/material';
-import './Card.css';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DesktopDatePicker } from '@mui/x-date-pickers';
 
 
 
-function Foard({ fetchTransaction, editTransaction,setEditTransaction }) {
+function Foard({ fetchTransaction, editTransaction, setEditTransaction }) {
 
   const initialForm = {
     amount: '',
@@ -37,17 +36,16 @@ function Foard({ fetchTransaction, editTransaction,setEditTransaction }) {
     setForm({ ...form, [event.target.name]: event.target.value })
   }
 
-  useEffect(() => {
-    fetchTransaction();
-  })
+ 
 
 
   //HandleSubmit to submit form.
   async function handleSubmit(event) {
     event.preventDefault();
 
-    const res = editTransaction.amount === undefined ? create() : update();
-
+    editTransaction.amount === undefined ? create() : update();
+  }
+  function reload(res) {
 
     if (res.ok) {
       setForm(initialForm)
@@ -64,12 +62,11 @@ function Foard({ fetchTransaction, editTransaction,setEditTransaction }) {
         'content-type': 'application/json',
       },
     }
-    )
-    setForm(initialForm);
-    return res;
+    );
+       reload( res);
   }
   async function update() {
-    const res = await fetch(                                  
+    const res = await fetch(
       `http://localhost:4000/transaction/${editTransaction._id}`, {
       method: 'PATCH',
       body: JSON.stringify(form),
@@ -79,22 +76,24 @@ function Foard({ fetchTransaction, editTransaction,setEditTransaction }) {
     }
     )
     setForm(initialForm);
-setEditTransaction({})
+    setEditTransaction({})
     return res;
   }
 
 
-  const color = '#8AB4F1'
+  const color = '#8AB4F1';
+
   return (
-    <Box className='mlrb-9' >
-      <Card variant="outlined"  >
-        <CardContent
-        >
-          <Typography variant="h6" fontFamily='cursive'
-            sx={{ marginBottom: 2, marginLeft: 2 }}
-          >
-            Add New Transaction </Typography>
-          <form onSubmit={handleSubmit} >
+    <Card variant="outlined" sx={{ minWidth: 275, width: 'fit-content' }}>
+      <CardContent>
+        <Typography variant="h6" fontFamily='cursive'
+          sx={{ marginBottom: 1, marginLeft: 1 }}>  Add New Transaction </Typography>
+        <Box component="form" onSubmit={handleSubmit} sx={{
+          display: "flex", alignItems: 'center',
+          justifyContent: 'center',
+        }} >
+
+       
             <TextField
               name='amount'
               onChange={handleInput}
@@ -141,10 +140,11 @@ setEditTransaction({})
               variant="contained"
               size='medium'
             >Submit</Button> */}
-          </form>
-        </CardContent>
-      </Card>
-    </Box>
+         
+        </Box >
+      </CardContent>
+    </Card>
+
   );
 }
 export default Foard;
