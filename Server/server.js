@@ -1,5 +1,5 @@
 import express from "express";
-
+import * as dotenv from 'dotenv';
 import { DbConn } from "./component/databaseConnection.js";
 import cors from 'cors';
 import bodyParser from "body-parser";
@@ -8,6 +8,8 @@ import AuthRoute from './component/AuthRoute.js'
 import passport from 'passport';
 import passportConfig from './config/passport.js';
 
+
+dotenv.config();
 const app = express();
 const Port = 4000;
 app.use(cors());

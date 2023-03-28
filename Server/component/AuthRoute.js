@@ -15,7 +15,7 @@ router.post('/register', async (req, res) => {
     const saltRounds = 10;
     const key = await bcrypt.genSaltSync(saltRounds)
     const hashedPassword = await bcrypt.hashSync(password, key)
-    console.log(hashedPassword);
+    
 
 
     const user = await User({ email, password: hashedPassword, firstName, lastName });
@@ -42,7 +42,7 @@ router.post('/login', async (req, res) => {
         username: email,
         _id: userExists._id,
     }
-    const token = jwt.sign({ payload }, 'some secret');
+    const token = jwt.sign({ payload },process.env.JWT_KEY);
     res.json({ message: 'sucessfully logged in.', token })
 });
 export default router;
