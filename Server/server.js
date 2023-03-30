@@ -7,7 +7,7 @@ import TransactionRoutes from "./component/transactionRoute.js";
 import AuthRoute from './component/AuthRoute.js'
 import passport from 'passport';
 import passportConfig from './config/passport.js';
-
+import UserRoutes from './component/UserRoutes.js'
 
 dotenv.config();
 const app = express();
@@ -26,7 +26,7 @@ app.get(
 app.use('/', TransactionRoutes);
 
 app.use('/auth', AuthRoute);
-
+app.use('/user', UserRoutes);
 app.listen(
     Port, () => {
         console.log("Server listen at : http://localhost:4000/ ");

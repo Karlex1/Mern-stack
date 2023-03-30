@@ -7,13 +7,16 @@ import Button from '@mui/material/Button';
 import { Link, useNavigate as navigated } from 'react-router-dom';
 import '../index.css'
 import Cookies from 'js-cookie';
+import { useDispatch as Dispatch } from 'react-redux';
+import { logout_ } from '../store/auth';
 
 export default function appBar() {
-
+  const dispatch = Dispatch();
   const navigate = navigated();
 
   function logout() {
     Cookies.remove("user_token");
+    dispatch(logout_());
     navigate("/login");
   }
   return (

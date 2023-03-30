@@ -12,6 +12,8 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Link as RouterLink, useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
+import {useDispatch} from 'react-redux'
+import { getUser } from '../store/auth';
 
 function Copyright(props) {
   return (
@@ -29,7 +31,7 @@ function Copyright(props) {
 const theme = createTheme();
 
 export default function Login() {
-
+  const dispatch = useDispatch();
   const navigate = useNavigate()
 
   const handleSubmit = async (event) => {
@@ -51,12 +53,12 @@ export default function Login() {
     ) {
       alert('Do not have account, Create One...');
     };
-    const { token } = await res.json();
+    const { token,userExists } = await res.json();
     if (res.ok) {
       Cookies.set('user_token', token);
-      console.log(Cookies.get('user_token'));
+      dispatch(getUser(userExists));
       navigate('/');
-      console.log('done');
+    
     }
   };
 
