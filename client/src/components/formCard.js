@@ -42,11 +42,9 @@ function Foard({ fetchTransaction, editTransaction, setEditTransaction }) {
   //HandleSubmit to submit form.
   async function handleSubmit(event) {
     event.preventDefault();
-
     editTransaction.amount === undefined ? create() : update();
   }
   function reload(res) {
-
     if (res.ok) {
       setForm(initialForm)
       fetchTransaction();
@@ -75,9 +73,9 @@ function Foard({ fetchTransaction, editTransaction, setEditTransaction }) {
       },
     }
     )
-    setForm(initialForm);
+    
     setEditTransaction({})
-    return res;
+    reload(res);
   }
 
 
