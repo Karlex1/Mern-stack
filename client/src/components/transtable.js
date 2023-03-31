@@ -8,7 +8,7 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
-import { IconButton } from '@mui/material';
+import { Container, IconButton, Typography } from '@mui/material';
 import dayjs from "dayjs";
 
 export default function TTable({ transaction, fetchTransaction,setEditTransaction }) {
@@ -28,8 +28,12 @@ export default function TTable({ transaction, fetchTransaction,setEditTransactio
     }
   }
   return (
-    <TableContainer component={Paper} sx={{borderRadius:'20px'}}>
-      <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table" >
+    <Container>
+
+      <TableContainer component={Paper} sx={{ borderRadius: '15px', backgroundColor: 'rgb(240,255,252)' }} >
+        <Typography variant="h6" fontFamily='cursive'
+          sx={{ marginBottom: 1, marginLeft: 2,marginTop:2 }}>  Transaction List  </Typography>
+      <Table sx={{ minWidth: 550 }} size="small" aria-label="a dense table" >
         <TableHead>
           <TableRow>
             <TableCell align='center'>Amount</TableCell>
@@ -63,6 +67,7 @@ export default function TTable({ transaction, fetchTransaction,setEditTransactio
 
         </TableBody>
       </Table>
-    </TableContainer>
+      </TableContainer>
+    </Container>
   );
 }

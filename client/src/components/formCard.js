@@ -3,7 +3,7 @@ import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import TextField from '@mui/material/TextField';
-import { Button } from '@mui/material';
+import { Button, Container } from '@mui/material';
 import { Typography } from '@mui/material';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
@@ -84,8 +84,13 @@ function Foard({ fetchTransaction, editTransaction, setEditTransaction }) {
   const color = '#8AB4F1';
 
   return (
-    <Card variant="outlined" sx={{ minWidth: 275, width: 'fit-content' }}>
-      <CardContent>
+    <Container>
+      <Container>
+        <Card variant="outlined" sx={{
+          marginTop: 6, marginBottom: 3, minWidth: '550'
+        }} >
+          <CardContent sx={{
+            backgroundColor: 'rgb(240,255,252)' }} >
         <Typography variant="h6" fontFamily='cursive'
           sx={{ marginBottom: 1, marginLeft: 1 }}>  Add New Transaction </Typography>
         <Box component="form" onSubmit={handleSubmit} sx={{
@@ -143,8 +148,9 @@ function Foard({ fetchTransaction, editTransaction, setEditTransaction }) {
          
         </Box >
       </CardContent>
-    </Card>
-
+        </Card>
+        </Container>
+    </Container>
   );
 }
 export default Foard;
