@@ -41,6 +41,6 @@ export const login = async (req, res) => {
         username: email,
         _id: userExists._id,
     }
-    const token = jwt.sign({ payload }, process.env.JWT_KEY);
+    const token = jwt.sign(payload , process.env.JWT_KEY);
     res.json({ message: 'sucessfully logged in.', token, userExists })
 }

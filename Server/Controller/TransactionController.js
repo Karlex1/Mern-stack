@@ -1,7 +1,7 @@
 import Transaction from "../component/TransactionModel.js";
 // back to front
 export const api = async (req, res) => {
-    const transaction = await Transaction.find({}).sort({ createdAt: -1 });
+    const transaction = await Transaction.find({user_id:req.user._id}).sort({ createdAt: -1 });
     res.json({ data: transaction });
 }
 // front to back
@@ -12,6 +12,7 @@ export const create = async (req, res) => {
         amount,
         description,
         date,
+        user_id:req.user._id,
     })
     await transaction.save()
     res.json({ output: transaction });

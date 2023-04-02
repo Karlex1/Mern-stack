@@ -7,12 +7,13 @@ import Button from '@mui/material/Button';
 import { Link, useNavigate as navigated } from 'react-router-dom';
 import '../index.css'
 import Cookies from 'js-cookie';
-import { useDispatch as Dispatch } from 'react-redux';
+import { useDispatch as Dispatch,useSelector as Selector } from 'react-redux';
 import { logout_ } from '../store/auth';
 
 export default function appBar() {
-  const dispatch = Dispatch();
   const navigate = navigated();
+  const isLoggedin = Selector((state) => state.auth.isAuthenticated);
+  const dispatch = Dispatch();
 
   function logout() {
     Cookies.remove("user_token");
@@ -25,14 +26,20 @@ export default function appBar() {
         <Toolbar>
           <Typography variant="h6" component="div"
             sx={{ flexGrow: 1 }} >
-            <Link to='/' className='appBar'>  MERNstack</Link>
-
+            <Link to='/' className='appBar'>Expen$eTracker</Link>
           </Typography>
-          <Link to='/login' className='appBar'> <Button color="inherit">Login</Button></Link>
-          <Link to='/register' className='appBar'> <Button color="inherit">Register</Button></Link>
-          <Button color="inherit" onClick={logout}>
+          {isLoggedin&&(<Button color="inherit" onClick={logout}>
             Logout
-          </Button>
+          </Button>)}
+
+          {!isLoggedin && (<>
+            <Link to='/login' className='appBar'> <Button color="inherit">Login</Button>
+            </Link>
+            <Link to='/register' className='appBar'> <Button color="inherit">Register</Button>
+            </Link></>
+          )}
+         
+          
         </Toolbar>
       </AppBar>
     </Box>
