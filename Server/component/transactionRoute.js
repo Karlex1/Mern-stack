@@ -6,11 +6,11 @@ import passport from 'passport';
 const router = Router();
 
 router.get(
-    '/transaction', passport.authenticate('jwt', { session: false }), TransactionController.api);
+    '/',  TransactionController.api);
 router.post(
-    "/transaction", TransactionController.create);
+    "/", TransactionController.create);
 router.delete(
-    '/transaction/:id', TransactionController.Delete);
+    '/:id', TransactionController.Delete);
 router.patch(
-    '/transaction/:id', TransactionController.update);
+    '/:id', TransactionController.update);
 export default router;

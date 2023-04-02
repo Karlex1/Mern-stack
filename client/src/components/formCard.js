@@ -8,6 +8,7 @@ import { Typography } from '@mui/material';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DesktopDatePicker } from '@mui/x-date-pickers';
+import Cookies from 'js-cookie';
 
 
 
@@ -22,6 +23,8 @@ function Foard({ fetchTransaction, editTransaction, setEditTransaction }) {
   const [form, setForm] = useState(
     initialForm
   );
+
+  const token = Cookies.get('user_token');
 
   useEffect(() => {
     if (editTransaction.amount !== undefined) {
@@ -58,6 +61,7 @@ function Foard({ fetchTransaction, editTransaction, setEditTransaction }) {
       body: JSON.stringify(form),
       headers: {
         'content-type': 'application/json',
+        'Authorization': `Bearer ${token}`
       },
     }
     );
@@ -70,6 +74,7 @@ function Foard({ fetchTransaction, editTransaction, setEditTransaction }) {
       body: JSON.stringify(form),
       headers: {
         'content-type': 'application/json',
+        'Authorization': `Bearer ${token}`
       },
     }
     )

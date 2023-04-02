@@ -10,9 +10,11 @@ import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { Container, IconButton, Typography } from '@mui/material';
 import dayjs from "dayjs";
+import Cookies from 'js-cookie';
 
 export default function TTable({ transaction, fetchTransaction,setEditTransaction }) {
   const transactions = transaction;
+const token = Cookies.get('user_token')
 
   function formatDate(date) {
     return dayjs(date).format('DD/MM/YYYY')
@@ -20,7 +22,11 @@ export default function TTable({ transaction, fetchTransaction,setEditTransactio
 
   async function remove(_id) {
     if (!window.confirm('Are you sure')) return;
-    const res = await fetch(`http://localhost:4000/transaction/${_id}`, { method: 'DELETE', });
+    const res = await fetch(`http://localhost:4000/transaction/${_id}`, {
+      method: 'DELETE',
+      headers: {
+      'Authorization':`Bearer ${token}`
+    } });
 
     if (res.ok) {
       fetchTransaction();
