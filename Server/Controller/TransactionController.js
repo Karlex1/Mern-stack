@@ -1,18 +1,19 @@
 import Transaction from "../component/TransactionModel.js";
 // back to front
 export const api = async (req, res) => {
-    const transaction = await Transaction.find({user_id:req.user._id}).sort({ createdAt: -1 });
+    const transaction = await Transaction.find({ user_id: req.user._id }).sort({ createdAt: -1 });
     res.json({ data: transaction });
 }
 // front to back
 export const create = async (req, res) => {
-    const { amount, description, date } = req.body;
+    const { amount, description, date, category_id } = req.body;
     // we got form data from frontend to backend by req of Post of backend now we getting the data so we have to store it.
     const transaction = new Transaction({
         amount,
         description,
         date,
-        user_id:req.user._id,
+        user_id: req.user._id,
+        category_id,
     })
     await transaction.save()
     res.json({ output: transaction });

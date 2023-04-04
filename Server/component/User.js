@@ -7,6 +7,7 @@ const UserSchema = new Schema({
     lastName: { type: String, required: ['Last name is required'] },
     email: { type: String, required: ['Email is required'] },
     password: { type: String, required: ['Password rakh le bhai'] },   
+    categories:[{label:String,icon:String}],
 },
     {
         timestamps:true

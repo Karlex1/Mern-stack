@@ -1,7 +1,6 @@
 import * as React from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
-import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
 import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
@@ -64,7 +63,7 @@ export default function Register() {
             <Container component="main" maxWidth="xs" sx={{
                 backgroundImage: "url('https://img.freepik.com/free-photo/white-paper-texture_1194-5998.jpg?w=2000')"
             }}>
-                <CssBaseline />
+          
                 <Box
                     sx={{
                         marginTop: 8,

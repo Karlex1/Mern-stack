@@ -5,6 +5,7 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import CheckAuth from "./utils/CheckAuth";
 import Guest from "./utils/Guest";
+import Category from "./pages/Category";
 
 export default createBrowserRouter([
     {
@@ -21,6 +22,12 @@ export default createBrowserRouter([
             {
                 path: '/register',
                 element: <Guest><Register /></Guest>,
+            },
+            {
+                path: '/category',
+                element: 
+                <CheckAuth><Category /></CheckAuth>
+                    ,
             }
         ]
     },

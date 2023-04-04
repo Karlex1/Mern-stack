@@ -28,6 +28,9 @@ export default function appBar() {
             sx={{ flexGrow: 1 }} >
             <Link to='/' className='appBar'>Expen$eTracker</Link>
           </Typography>
+
+          <Link to='/category' className='appBar'> <Button color="inherit">Category</Button>
+          </Link>
           {isLoggedin&&(<Button color="inherit" onClick={logout}>
             Logout
           </Button>)}

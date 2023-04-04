@@ -1,7 +1,6 @@
 import * as React from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
-import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
 import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
@@ -13,7 +12,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Link as RouterLink, useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import {useDispatch} from 'react-redux'
-import { getUser } from '../store/auth';
+import { setUser } from '../store/auth';
 
 function Copyright(props) {
   return (
@@ -56,7 +55,7 @@ export default function Login() {
     const { token,userExists } = await res.json();
     if (res.ok) {
       Cookies.set('user_token', token);
-      dispatch(getUser(userExists));
+      dispatch(setUser(userExists));
       navigate('/');
     
     }
@@ -67,7 +66,7 @@ export default function Login() {
       <Container component="main" maxWidth="xs" sx={{
         backgroundImage: "url('https://img.freepik.com/free-photo/white-paper-texture_1194-5998.jpg?w=2000')"
       }}>
-        <CssBaseline />
+      
         <Box
           sx={{
             marginTop: 8,
