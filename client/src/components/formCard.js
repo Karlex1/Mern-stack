@@ -130,6 +130,7 @@ function Foard({ fetchTransaction, editTransaction, setEditTransaction }) {
                 variant="outlined"
                 size="small"
                 sx={{ marginLeft: 5, marginRight: 5 }}
+                type='number'
               />
               <TextField
                 name='description'
