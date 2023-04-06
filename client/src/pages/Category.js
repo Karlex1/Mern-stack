@@ -14,6 +14,7 @@ import Cookies from 'js-cookie';
 import { setUser } from '../store/auth';
 import CategoryForm from '../components/CategoryForm';
 
+
 export default function Category() {
   const user = useSelector((state) => state.auth.user);
   const token = Cookies.get("user_token");
@@ -45,6 +46,7 @@ setEditCategory(category)
 
   return (
     <Container>
+
       <CategoryForm editCategory={editCategory}  />
       <TableContainer
         component={Paper}

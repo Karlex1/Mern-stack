@@ -13,8 +13,8 @@ import dayjs from "dayjs";
 import Cookies from 'js-cookie';
 import { useSelector } from 'react-redux';
 
-export default function TTable({ transaction, fetchTransaction, setEditTransaction }) {
-  const transactions = transaction;
+export default function TTable({ data, fetchTransaction, setEditTransaction }) {
+ 
   const token = Cookies.get('user_token')
 const user = useSelector((state)=>state.auth.user)
 
@@ -43,7 +43,6 @@ const user = useSelector((state)=>state.auth.user)
   }
   return (
     <Container>
-
       <TableContainer component={Paper} sx={{ borderRadius: '15px', backgroundColor: 'rgb(240,255,252)' }} >
         <Typography variant="h6" fontFamily='cursive'
           sx={{ marginBottom: 1, marginLeft: 2, marginTop: 2 }}>  Transaction List  </Typography>
@@ -58,8 +57,8 @@ const user = useSelector((state)=>state.auth.user)
             </TableRow>
           </TableHead>
           <TableBody>
-            {transactions.map((e) => (
-              <TableRow key={e._id} sx={{ '&:last-child td, &:last-child th': { border: 0 } }} >
+            {data.map((month) => (month.transactions.map((e, _id) => (
+              <TableRow key={_id} sx={{ '&:last-child td, &:last-child th': { border: 0 } }} >
                 <TableCell component="th" scope="row" align='center'>
                   {e.amount}
                 </TableCell>
@@ -80,7 +79,8 @@ const user = useSelector((state)=>state.auth.user)
                     <DeleteIcon />
                   </ IconButton>
                 </TableCell>
-              </TableRow>))}
+              </TableRow>))))}
+            
 
           </TableBody>
         </Table>

@@ -2,6 +2,7 @@ import Cookies from 'js-cookie';
 import React, { useEffect, useState } from 'react';
 import Foard from '../components/formCard.js';
 import TTable from '../components/transtable.js';
+import TransactionChart from '../components/TransGraph';
 
 function Home() {
     const [transactions, setTransactions] = useState([]);
@@ -24,9 +25,10 @@ function Home() {
     }, []);
     return (
         <>
+            <TransactionChart data={transactions} />
             <Foard fetchTransaction={fetchTransaction}
                 editTransaction={editTransaction} setEditTransaction={setEditTransaction} />
-            <TTable transaction={transactions} fetchTransaction={fetchTransaction}
+            <TTable data={transactions} fetchTransaction={fetchTransaction}
                 setEditTransaction={setEditTransaction} />
         </>
     );
