@@ -100,7 +100,6 @@ function Foard({ fetchTransaction, editTransaction, setEditTransaction }) {
     setEditTransaction({})
     reload(res);
   }
-
   const color = '#8AB4F1';
 // front end
   return (

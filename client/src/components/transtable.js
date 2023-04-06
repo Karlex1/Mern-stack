@@ -8,7 +8,7 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
-import { Container, IconButton, Typography } from '@mui/material';
+import {  Container, IconButton, Typography } from '@mui/material';
 import dayjs from "dayjs";
 import Cookies from 'js-cookie';
 import { useSelector } from 'react-redux';
@@ -35,15 +35,13 @@ const user = useSelector((state)=>state.auth.user)
         'Authorization': `Bearer ${token}`
       }
     });
-
     if (res.ok) {
       fetchTransaction();
-      window.alert('DELETED Successfully')
-    }
+      }
   }
   return (
     <Container>
-      <TableContainer component={Paper} sx={{ borderRadius: '15px', backgroundColor: 'rgb(240,255,252)' }} >
+      <TableContainer component={Paper} sx={{ borderRadius: '15px', backgroundColor: 'rgb(240,255,252)' ,marginBottom:2}} >
         <Typography variant="h6" fontFamily='cursive'
           sx={{ marginBottom: 1, marginLeft: 2, marginTop: 2 }}>  Transaction List  </Typography>
         <Table sx={{ minWidth: 550 }} size="small" aria-label="a dense table" >
@@ -57,6 +55,7 @@ const user = useSelector((state)=>state.auth.user)
             </TableRow>
           </TableHead>
           <TableBody>
+            {/* here below we  did map month then we r getting data from the amouth,desc,date,category n all... all this we r sending from backend  */}
             {data.map((month) => (month.transactions.map((e, _id) => (
               <TableRow key={_id} sx={{ '&:last-child td, &:last-child th': { border: 0 } }} >
                 <TableCell component="th" scope="row" align='center'>
@@ -81,7 +80,6 @@ const user = useSelector((state)=>state.auth.user)
                 </TableCell>
               </TableRow>))))}
             
-
           </TableBody>
         </Table>
       </TableContainer>

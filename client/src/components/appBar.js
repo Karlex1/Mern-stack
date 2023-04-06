@@ -29,11 +29,13 @@ export default function appBar() {
             <Link to='/' className='appBar'>Expen$eTracker</Link>
           </Typography>
 
-          <Link to='/category' className='appBar'> <Button color="inherit">Category</Button>
+          
+          {isLoggedin && (<> <Link to='/category' className='appBar'> <Button color="inherit">Category</Button>
           </Link>
-          {isLoggedin&&(<Button color="inherit" onClick={logout}>
+            <Button color="inherit" onClick={logout}>
             Logout
-          </Button>)}
+          </Button>
+           </>)}
 
           {!isLoggedin && (<>
             <Link to='/login' className='appBar'> <Button color="inherit">Login</Button>
