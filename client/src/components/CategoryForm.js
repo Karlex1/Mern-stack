@@ -56,7 +56,7 @@ function CategoryForm({ editCategory }) {
   //func to create transaction : sending data to transAPI
   async function create() {
     const res = await fetch(
-      "http://localhost:4000/category", {
+      `${process.env.REACT_APP_API_URL}/category`, {
       method: 'POST',
       body: JSON.stringify(form),
       headers: {
@@ -74,7 +74,7 @@ function CategoryForm({ editCategory }) {
   //func to update trans api
   async function update() {
     const res = await fetch(
-      `http://localhost:4000/category/${editCategory._id}`, {
+      ` ${ process.env.REACT_APP_API_URL } /category/${editCategory._id}`, {
       method: 'PATCH',
       body: JSON.stringify(form),
       headers: {
