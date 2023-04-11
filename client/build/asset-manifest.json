@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/static/css/main.a3dcbbf1.css",
+    "main.js": "/static/js/main.d88fc582.js",
+    "static/js/787.c4e7f8f9.chunk.js": "/static/js/787.c4e7f8f9.chunk.js",
+    "static/media/pngtree-inr-500-rupees-notes-background-image-picture-image_1964627.jpg": "/static/media/pngtree-inr-500-rupees-notes-background-image-picture-image_1964627.a51cc05c9a01438443e0.jpg",
+    "index.html": "/index.html",
+    "main.a3dcbbf1.css.map": "/static/css/main.a3dcbbf1.css.map",
+    "main.d88fc582.js.map": "/static/js/main.d88fc582.js.map",
+    "787.c4e7f8f9.chunk.js.map": "/static/js/787.c4e7f8f9.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.a3dcbbf1.css",
+    "static/js/main.d88fc582.js"
+  ]
+}
