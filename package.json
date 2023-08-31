@@ -1,0 +1,27 @@
+{
+  "name": "mern-chat",
+  "version": "1.0.0",
+  "description": "This is repository for mern-stack learning process notes.",
+  "main": "index.js",
+  "dependencies": {
+    "js-cookie": "^3.0.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "install-server": "cd backend && npm install",
+    "start-server": "cd backend && node app.js",
+    "install-client": "cd client && npm install",
+    "build-client": "cd client && npm run build",
+    "start-client": "cd client && npm run start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Karlex1/mern-stack.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Karlex1/mern-stack/issues"
+  },
+  "homepage": "https://github.com/Karlex1/mern-stack#readme"
+}
