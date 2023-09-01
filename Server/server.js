@@ -19,6 +19,7 @@ app.use(bodyParser.json());
 app.use(passport.initialize());
 passportConfig(passport);
 await DbConn();
+
 app.get(
     "/", (req, res) => {
         res.send({reso:'hello! server is ready!'});
@@ -30,10 +31,6 @@ app.use('/', router);
 
 const __filename = url.fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-
-// console.log(__filename);
-// console.log(__dirname);
-
 app.use(express.static(path.join(__dirname, '../client/build')));
 app.get('*',function (req, res){
     res.sendFile(path.join(__dirname, '../client/build/index.html'))
