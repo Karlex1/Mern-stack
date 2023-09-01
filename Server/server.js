@@ -6,6 +6,7 @@ import bodyParser from "body-parser";
 import passport from 'passport';
 import passportConfig from './config/passport.js';
 import router from './index.js';
+import path from 'path';
 
 dotenv.config();
 const app = express();
