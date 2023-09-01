@@ -9,10 +9,10 @@
   },
   "devDependencies": {},
   "scripts": {
-    "install-server": "cd Server && npm install",
-    "start": "cd Server && npm install && node server.js",
-    "install": "cd client && npm install",
-    "build-client": "cd client && npm run build"
+    
+    "start": "cd client && npm install",
+    "install": "cd Server && npm install && node server.js"
+    
   },
   "repository": {
     "type": "git",
