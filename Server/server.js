@@ -6,7 +6,7 @@ import bodyParser from "body-parser";
 import passport from 'passport';
 import passportConfig from './config/passport.js';
 import router from './index.js';
-import path from 'path';
+import path, { dirname } from 'path';
 
 dotenv.config();
 const app = express();
@@ -26,9 +26,9 @@ app.get(
 
 app.use('/', router);
 
-app.use(express.static(path.join(__dirname, '../client/build')));
-app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, '../client/build/index.html'))
+app.use(express.static(path.join(dirname, '../client/build')));
+app.get('*',function (req, res){
+    res.sendFile(path.join(dirname, '../client/build/index.html'))
 });
 
 app.listen(
