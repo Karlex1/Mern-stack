@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "This is repository for mern-stack learning process notes.",
   "main": "index.js",
+  "type": "module",
   "dependencies": {
     "js-cookie": "^3.0.1"
   },
