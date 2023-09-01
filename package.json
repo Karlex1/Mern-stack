@@ -10,7 +10,7 @@
   "devDependencies": {},
   "scripts": {
     
-    "start": "npm start && node server.js",
+    "start": "node server.js",
     "install": "cd Server && npm install && cd.. && cd client && npm install "
     
   },
