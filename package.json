@@ -11,7 +11,7 @@
   "scripts": {
     "server": "cd Server && npm install && npm start",
     "client": "cd client && npm install && npm start",
-    "start": "concurrently \"npm run server\" \"npm run client\""
+    "start": "concurrently \"npm run client\" \"npm run server\""
   },
   "repository": {
     "type": "git",
