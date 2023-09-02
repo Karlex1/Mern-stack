@@ -5,15 +5,13 @@
   "main": "index.js",
   "type": "module",
   "dependencies": {
+    "concurrently": "^8.2.1",
     "js-cookie": "^3.0.1"
   },
-  "devDependencies": {},
   "scripts": {
-
-    "server":"cd Server && npm install && npm start",
-    "client":"cd client && npm install && npm start",
-    "start":"concurrently \"npm run server\" \"npm run client\""
-
+    "server": "cd Server && npm install && npm start",
+    "client": "cd client && npm install && npm start",
+    "start": "concurrently \"npm run server\" \"npm run client\""
   },
   "repository": {
     "type": "git",
