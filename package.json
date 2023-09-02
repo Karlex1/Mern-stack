@@ -12,7 +12,7 @@
 
     "server":"cd Server && npm install && npm start",
     "client":"cd client && npm install && npm start",
-    "dev":"concurrently \"npm run server\" \"npm run client\""
+    "start":"concurrently \"npm run server\" \"npm run client\""
 
   },
   "repository": {
