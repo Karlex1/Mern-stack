@@ -11,7 +11,7 @@ import url from 'url';
 
 dotenv.config();
 const app = express();
-const PORT = process.env.PORT || 4000;
+const PORT = process.env.PORT;
 // const path = require('path');
 
 app.use(cors());
